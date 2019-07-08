@@ -7,7 +7,7 @@ import logging
 import aria2p
 
 
-CONFIGFILE = 'config_test.ini'
+CONFIGFILE = 'config.ini'
 TORRENT_DIR = 'torrents'
 config = toolkit_config.read_config_general(CONFIGFILE)
 
