@@ -29,8 +29,15 @@ def add_torrent_task(torrent_file_path):
         logging.info('Added task.')
         os.rename(torrent_file_path, torrent_file_path + '.added')
 
+
+@logging_manager.logging_to_file
 def batch_add_torrent_task():
-    for torrent_file in toolkit_file.get_file_list(TORRENT_DIR):
+    torrent_file_list = [file for file in toolkit_file.get_file_list(
+        TORRENT_DIR) if file.endswith('.torrent')]
+    logging.info('Found torrent: ')
+    logging.info([toolkit_file.get_basename(x, withExtension=True)
+                  for x in torrent_file_list])
+    for torrent_file in torrent_file_list:
         add_torrent_task(torrent_file)
 
 
