@@ -6,6 +6,7 @@ import os
 import logging
 import aria2p
 
+from tqdm import tqdm
 
 CONFIGFILE = 'config.ini'
 TORRENT_DIR = 'torrents'
@@ -37,7 +38,7 @@ def batch_add_torrent_task():
     logging.info('Found torrent: ')
     logging.info([toolkit_file.get_basename(x, withExtension=True)
                   for x in torrent_file_list])
-    for torrent_file in torrent_file_list:
+    for torrent_file in tqdm(torrent_file_list, unit='Tasks'):
         add_torrent_task(torrent_file)
 
 
